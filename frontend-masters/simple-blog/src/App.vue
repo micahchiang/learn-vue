@@ -2,20 +2,16 @@
   <div id="app">
     <img src="./assets/logo.png">
     <h1>{{ msg }}</h1>
-    <h2>Essential Links</h2>
     <ul>
-      <li><a href="https://vuejs.org" target="_blank">Core Docs</a></li>
-      <li><a href="https://forum.vuejs.org" target="_blank">Forum</a></li>
-      <li><a href="https://chat.vuejs.org" target="_blank">Community Chat</a></li>
-      <li><a href="https://twitter.com/vuejs" target="_blank">Twitter</a></li>
+      <li v-for="(post, index) in posts" :key="index">
+        {{post.author}}, {{post.title}}, {{post.comment}}
+      </li>
     </ul>
-    <h2>Ecosystem</h2>
-    <ul>
-      <li><a href="http://router.vuejs.org/" target="_blank">vue-router</a></li>
-      <li><a href="http://vuex.vuejs.org/" target="_blank">vuex</a></li>
-      <li><a href="http://vue-loader.vuejs.org/" target="_blank">vue-loader</a></li>
-      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank">awesome-vue</a></li>
-    </ul>
+    <form @keyup.enter="addPost">
+      <input v-model="author" placeholder="author name">
+      <input v-model="title" placeholder="post title">
+      <input v-model="newComment" placeholder="Add a post">
+    </form>
   </div>
 </template>
 
@@ -24,7 +20,50 @@ export default {
   name: 'app',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      msg: 'Welcome to your vue.js blog!',
+      author: '',
+      title: '',
+      newComment: '',
+      postModel: {
+        author: '',
+        title: '',
+        comment: ''
+      },
+      posts: [
+        {
+          author: 'Micah',
+          title: 'saving the planet',
+          comment: 'we need to save the planet'    
+        },
+        {
+          author: 'Micah',
+          title: 'saving the planet',
+          comment: 'we need to save the planet'    
+        },
+        {
+          author: 'Micah',
+          title: 'saving the planet',
+          comment: 'we need to save the planet'    
+        },
+        {
+          author: 'Micah',
+          title: 'saving the planet',
+          comment: 'we need to save the planet'    
+        }
+      ]
+    }
+  },
+  methods: {
+    addPost() {
+      let newPost = new Object({
+        author: this.author,
+        title: this.title,
+        comment: this.newComment,
+      })
+      this.posts.push(newPost);
+      this.author = '';
+      this.title = '';
+      this.newComment = ''
     }
   }
 }
@@ -40,17 +79,19 @@ export default {
   margin-top: 60px;
 }
 
-h1, h2 {
+h1,
+h2 {
   font-weight: normal;
 }
 
 ul {
   list-style-type: none;
+  text-align: center;
   padding: 0;
 }
 
 li {
-  display: inline-block;
+  display: block;
   margin: 0 10px;
 }
 

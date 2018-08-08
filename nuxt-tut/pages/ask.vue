@@ -3,7 +3,7 @@
 </template>
 
 <script>
-  import ItemsComponent from "../components/ItemsComponent";
+  import ItemsComponent from "~/components/ItemsComponent";
   export default {
     components: {ItemsComponent},
     async fetch( {store} ) {

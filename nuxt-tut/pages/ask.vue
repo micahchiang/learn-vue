@@ -7,7 +7,7 @@
   export default {
     components: {ItemsComponent},
     async fetch( {store} ) {
-      await store.dispatch("LOAD_ITEMS", "topstories.json")
+      await store.dispatch("LOAD_ITEMS", "askstories.json")
     }
   }
 </script>

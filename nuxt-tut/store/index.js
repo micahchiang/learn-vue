@@ -17,8 +17,8 @@ export const mutations = {
 };
 
 export const actions = {
-  async nuxtServerInit({ commit }) {
-    const response = await axios.get('topstories.json');
+  async LOAD_ITEMS({ commit }, dataUrl) {
+    const response = await axios.get(dataUrl);
     const ids = response.data;
     const tenIds = ids.slice(0, 10);
 
